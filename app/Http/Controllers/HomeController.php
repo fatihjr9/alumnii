@@ -10,9 +10,9 @@ class HomeController extends Controller
         $role=Auth::user()->role;
         if($role=='1') 
         {
-            return view('mahasiswa.dashboard');
+            return redirect('mahasiswa/dashboard');
         } else {
-            return view('dashboard');
+            return redirect('admin/dashboard');
         }
     }
 }

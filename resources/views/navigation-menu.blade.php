@@ -12,9 +12,45 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+
+                    @if(Auth::check())
+                        @if(Auth::user()->role == '1')
+                            <!-- Mahasiswa links -->
+                            <x-nav-link href="{{ route('mahasiswa.dashboard') }}" :active="request()->routeIs('mahasiswa.dashboard')">
+                                {{ __('Beranda') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('mahasiswa.agenda') }}" :active="request()->routeIs('mahasiswa.agenda')">
+                                {{ __('Agenda') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('mahasiswa.berita') }}" :active="request()->routeIs('mahasiswa.berita')">
+                                {{ __('Berita') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('mahasiswa.alumni') }}" :active="request()->routeIs('mahasiswa.alumni')">
+                                {{ __('Alumni') }}
+                            </x-nav-link>
+                        @elseif(Auth::user()->role == '0')
+                            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                                {{ __('Home') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('agenda.index') }}" :active="request()->routeIs('agenda.index')">
+                                {{ __('Agenda') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('berita.index') }}" :active="request()->routeIs('berita.index')">
+                                {{ __('Berita') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('alumni.index') }}" :active="request()->routeIs('alumni.index')">
+                                {{ __('Alumni') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('dosen.index') }}" :active="request()->routeIs('dosen.index')">
+                                {{ __('Dosen') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('lainnya.index') }}" :active="request()->routeIs('lainnya.index')">
+                                {{ __('Lainnya') }}
+                            </x-nav-link>
+                        @else
+                            <h5>Nothing</h5>
+                        @endif
+                    @endif
                 </div>
             </div>
 
