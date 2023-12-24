@@ -3,6 +3,8 @@
 
 // use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumniAdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
@@ -46,7 +48,8 @@ Route::middleware([
         Route::get('/dosen/add', [\App\Http\Controllers\DosenController::class, 'create'])->name('dosen.create');
         Route::post('/dosen/add', [\App\Http\Controllers\DosenController::class, 'store'])->name('dosen.store');
         // alumni
-        Route::get('/alumni', function () { return view('admin.alumni.index');})->name('alumni.index');
+        Route::get('/alumni', [\App\Http\Controllers\AlumniAdminController::class, 'index'])->name('alumni.index');
+        Route::delete('/alumni/{alumni}',[\App\Http\Controllers\AlumniAdminController::class, 'destroy'])->name('alumni.destroy');
         // lainnya
         Route::get('/lainnya', [\App\Http\Controllers\OtherController::class, 'index'])->name('lainnya.index');
         // lainnya -> Fakultas
@@ -64,6 +67,8 @@ Route::middleware([
         Route::get('/dashboard', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
         Route::get('/berita', [MahasiswaController::class, 'indexBerita'])->name('mahasiswa.berita');
         Route::get('/agenda', [MahasiswaController::class, 'indexAgenda'])->name('mahasiswa.agenda');
-        Route::get('/alumni', [MahasiswaController::class, 'indexAlumni'])->name('mahasiswa.alumni');
+        Route::get('/alumni', [AlumniController::class, 'index'])->name('mahasiswa.alumni');
+        Route::get('/alumni/daftar-alumni', [AlumniController::class, 'create'])->name('mahasiswa.alumni.create');
+        Route::post('/alumni/daftar-alumni', [AlumniController::class, 'store'])->name('mahasiswa.alumni.store');
     });
 });
