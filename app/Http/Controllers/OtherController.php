@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\fakultas;
 use App\Models\kontak;
+use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 
 class OtherController extends Controller
@@ -12,7 +13,8 @@ class OtherController extends Controller
     {
         $fakultas = fakultas::all();
         $kontak = kontak::all();
-        return view('admin.lainnya.index', compact('fakultas', 'kontak'));
+        $pertanyaan = Pertanyaan::all();
+        return view('admin.lainnya.index', compact('fakultas', 'kontak', 'pertanyaan'));
     }
     // fakultas
     public function createFakultas()
@@ -60,6 +62,23 @@ class OtherController extends Controller
         }
     
         kontak::create($validatedData);
+    
+        return redirect()->route('lainnya.index')->with('success', 'Kontak created successfully');
+    }
+
+    // kontak
+    public function createPertanyaan()
+    {
+        return view('admin.lainnya.action.createPertanyaan');
+    }
+
+    public function storePertanyaan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pertanyaan' => 'required',
+        ]);
+    
+        Pertanyaan::create($validatedData);
     
         return redirect()->route('lainnya.index')->with('success', 'Kontak created successfully');
     }
