@@ -103,11 +103,11 @@
                             </table>
                         </div>
                     </div>
-                    {{-- collection --}}
+                    {{-- Galeri --}}
                     <div class="border-b bg-white p-4 rounded-md shadow-sm space-y-4" id="galeri">
                         <div class="flex flex-row items-center justify-between">
                             <h5 class="text-xl font-bold">Galeri</h5>
-                            <a href="/lainnya/tambah-collection" class="px-4 py-2 bg-gray-300 text-black flex flex-row gap-x-1 rounded-md w-fit ml-auto items-center">
+                            <a href="{{ route('lainnya.tambah-galeri.create') }}" class="px-4 py-2 bg-gray-300 text-black flex flex-row gap-x-1 rounded-md w-fit ml-auto items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                                 </svg>                      
@@ -119,7 +119,7 @@
                                 <thead class="text-xs text-gray-700 uppercase bg-slate-100">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
-                                            Nama Collection
+                                            Nama Galeri
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             Gambar
@@ -130,17 +130,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if(isset($fakultas) && count($fakultas) > 0)
-                                        @foreach ($fakultas as $item)
-                                            <tr class="border-b">
+                                    @if(isset($galeri) && count($galeri) > 0)
+                                        @foreach ($galeri as $item)
+                                            <tr class="border-b border-gray-200 pb-4">
                                                 <td class="px-6 py-4">
-                                                    {{ $item->nama_fakultas }}
+                                                    {{ $item->judul_galeri }}
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ $item->nama_prodi }}
+                                                    @if ($item->galeri)
+                                                        @php
+                                                            $decodedImages = json_decode($item->galeri);
+                                                        @endphp                                                    
+
+                                                        @if ($decodedImages && is_array($decodedImages))
+                                                            <div class="flex flex-row items-center gap-x-1">
+                                                                @foreach ($decodedImages as $image)
+                                                                    <img src="{{ asset('galeri/' . $image) }}" alt="{{ $item->judul_galeri }}" class="w-16 h-16 rounded-md">
+                                                                @endforeach
+                                                            </div>
+                                                        @else
+                                                            <p>Error decoding images for {{ $item->judul_galeri }}</p>
+                                                            <pre>{{ $item->galeri }}</pre>
+                                                        @endif
+                                                    @endif
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                                    <form action="{{ route('lainnya.galeri.delete', ['id' => $item->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

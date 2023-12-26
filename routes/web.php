@@ -56,8 +56,9 @@ Route::middleware([
         Route::get('/lainnya/tambah-fakultas', [\App\Http\Controllers\OtherController::class, 'createFakultas'])->name('lainnya.tambah-fakultas');
         Route::post('/lainnya/tambah-fakultas', [\App\Http\Controllers\OtherController::class, 'storeFakultas'])->name('lainnya.tambah-fakultas');
         // lainnya -> Collection
-        Route::get('/lainnya/tambah-collection', [\App\Http\Controllers\OtherController::class, 'createCollection'])->name('tambah-collection');
-        Route::post('/lainnya/tambah-collection', [\App\Http\Controllers\OtherController::class, 'storeCollection'])->name('tambah-collection');
+        Route::get('/lainnya/tambah-galeri', [\App\Http\Controllers\OtherController::class, 'createGaleri'])->name('lainnya.tambah-galeri.create');
+        Route::post('/lainnya/tambah-galeri', [\App\Http\Controllers\OtherController::class, 'storeGaleri'])->name('lainnya.tambah-galeri.store');
+        Route::delete('/lainnya/galeri/{id}', [\App\Http\Controllers\OtherController::class, 'deleteGaleri'])->name('lainnya.galeri.delete');
         // lainnya -> Kontak
         Route::get('/lainnya/tambah-kontak', [\App\Http\Controllers\OtherController::class, 'createKontak'])->name('lainnya.tambah-kontak.create');
         Route::post('/lainnya/tambah-kontak', [\App\Http\Controllers\OtherController::class, 'storeKontak'])->name('lainnya.tambah-kontak.store');
