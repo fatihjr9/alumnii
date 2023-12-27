@@ -9,16 +9,13 @@ class AlumniController extends Controller
 {
     public function index()
     {
-        $alumnis = Alumni::all();
-        return view('mahasiswa.alumni', compact('alumnis'));
+       $alumnis = Alumni::all();
+    
+       return view('mahasiswa.index', compact('alumnis'));
     }
 
     public function create()
     {
-        $isAlumni = Alumni::where('id', auth()->user()->id)->exists();
-        if ($isAlumni) {
-            return redirect()->route('mahasiswa.alumni');
-        }
         return view('mahasiswa.action.CreateAlumni');
     }
 
@@ -40,8 +37,6 @@ class AlumniController extends Controller
             $image->move(public_path('alumni/'), $imageName);
             $validatedData['foto'] = $imageName;
         }
-        Alumni::create($validatedData);
-
         return redirect()->route('mahasiswa.alumni')->with('success', 'Alumni created successfully');
     }
 }

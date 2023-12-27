@@ -72,6 +72,7 @@ Route::middleware([
         Route::get('/berita', [MahasiswaController::class, 'indexBerita'])->name('mahasiswa.berita');
         Route::get('/agenda', [MahasiswaController::class, 'indexAgenda'])->name('mahasiswa.agenda');
         Route::get('/alumni', [AlumniController::class, 'index'])->name('mahasiswa.alumni');
+        // Daftar Alumni - Main
         Route::get('/alumni/daftar-alumni', [AlumniController::class, 'create'])->name('mahasiswa.alumni.create');
         Route::post('/alumni/daftar-alumni', [AlumniController::class, 'store'])->name('mahasiswa.alumni.store');
     });

@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('List Alumni') }}
             </h2>
-            <a href="{{ route('mahasiswa.alumni.create') }}" class="px-4 py-2 bg-indigo-800 text-white w-fit rounded-md">Daftar Sebagai Alumni</a>
+            <a href="{{ route('mahasiswa.alumni.create') }}" class="px-4 py-2 bg-indigo-800 text-white w-fit rounded-md">Daftar Alumni</a>
         </div>
     </x-slot>
 
@@ -35,9 +35,6 @@
                             <th scope="col" class="px-6 py-3">
                                 Tahun Lulus
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Pertanyaan
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,9 +60,6 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->thn_lulus }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    $99
                                 </td>
                             </tr>
                         @endforeach
