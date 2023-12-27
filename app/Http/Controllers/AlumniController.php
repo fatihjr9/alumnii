@@ -11,7 +11,7 @@ class AlumniController extends Controller
     {
        $alumnis = Alumni::all();
     
-       return view('mahasiswa.index', compact('alumnis'));
+       return view('mahasiswa.alumni', compact('alumnis'));
     }
 
     public function create()
