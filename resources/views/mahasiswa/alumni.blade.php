@@ -35,6 +35,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Tahun Lulus
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Pertanyaan
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +60,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->thn_masuk }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->thn_lulus }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->thn_lulus }}
