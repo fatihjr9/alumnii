@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumni;
+use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
 class AlumniController extends Controller
@@ -16,7 +17,8 @@ class AlumniController extends Controller
 
     public function create()
     {
-        return view('mahasiswa.action.CreateAlumni');
+        $jurusan = Fakultas::all();
+        return view('mahasiswa.action.CreateAlumni', compact('jurusan'));
     }
 
     public function store(Request $request)
