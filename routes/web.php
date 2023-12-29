@@ -63,8 +63,6 @@ Route::middleware([
         Route::get('/lainnya/tambah-kontak', [\App\Http\Controllers\OtherController::class, 'createKontak'])->name('lainnya.tambah-kontak.create');
         Route::post('/lainnya/tambah-kontak', [\App\Http\Controllers\OtherController::class, 'storeKontak'])->name('lainnya.tambah-kontak.store');
         // lainnya -> Pertanyaan
-        Route::get('/lainnya/tambah-pertanyaan', [\App\Http\Controllers\OtherController::class, 'createPertanyaan'])->name('lainnya.tambah-pertanyaan.create');
-        Route::post('/lainnya/tambah-pertanyaan', [\App\Http\Controllers\OtherController::class, 'storePertanyaan'])->name('lainnya.tambah-pertanyaan.store');
     });
     
     Route::group(['middleware' => 'role:1', 'prefix' => 'mahasiswa'], function () {

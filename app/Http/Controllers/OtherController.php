@@ -113,24 +113,4 @@ class OtherController extends Controller
         return redirect()->route('lainnya.index')->with('success', 'Kontak created successfully');
     }
 
-
-    // pertanyaan
-    public function createPertanyaan()
-    {
-        return view('admin.lainnya.action.createPertanyaan');
-    }
-
-    public function storePertanyaan(Request $request)
-    {
-        $validatedData = $request->validate([
-            'pertanyaan' => 'required',
-        ]);
-    
-        Pertanyaan::create($validatedData);
-    
-        return redirect()->route('lainnya.index')->with('success', 'Kontak created successfully');
-    }
-
-
-
 }
