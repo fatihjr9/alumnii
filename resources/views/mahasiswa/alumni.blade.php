@@ -4,7 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('List Alumni') }}
             </h2>
-            <a href="{{ route('mahasiswa.alumni.create') }}" class="px-4 py-2 bg-indigo-800 text-white w-fit rounded-md">Daftar Alumni</a>
+            @if(!$filled)
+                <a href="{{ route('mahasiswa.alumni.create') }}" class="px-4 py-2 bg-indigo-800 text-white w-fit rounded-md">Daftar Alumni</a>
+            @endif    
         </div>
     </x-slot>
 
@@ -75,15 +77,15 @@
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Alamat</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->alamat }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Telepon/HP</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->kontak }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Email</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->email }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -93,59 +95,63 @@
                                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Tempat Kerja</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->tempat_kerja }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Alamat Tempat Kerja Sekarang</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->alamat_kerja }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Nomor Telepon Tempat Kerja Sekarang</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->kontak_kerja }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Setelah Lulus, Saudara/Saudari langsung Bekerja dan tempat Bekerja saudara sesuai dengan ijazah ( pada lembaga pendidikan )?</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->sesuai_minat }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Pada Saat mendapatkan pekerjaan pertama dari mana saudara mendapatkan informasi pekerjaan tersebut?</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->info_kerja }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Lama waktu menunggu pekeraan pertama ( opsional )</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->waktu_kerja }}</p>
+                                                            </div>
+                                                            <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
+                                                                <h5 class="text-sm text-black font-medium">Penyebab harus menunggu pekerjaan pertama (opsional)</h5>
+                                                                <p class="text-sm">{{ $item->alasan }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Penghasilan yang saudara terima perbulan pertama kali bekerja</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->penghasilan_pertama }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Penghasilan yang saudara terima sekarang rata rata perbulan</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->penghasilan_rata }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Riwayat Pekerjaan sejak lulus dari Universitas Labuhan Batu Rantauprapat Sumatera Utara hingga mendapat pekerjaan Saat ini</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->riwayat_kerja }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Nama dan alamat lembaga pendidikan tempat saudara bekerja sekarang</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->nama_alamat_lembaga }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Bentuk lembaga pendidikan tempat saudara bekerja</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->kategori_lembaga }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Status saudara saat ini</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->status }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Pangkat dan golongan saat ini ( opsional )</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->pangkat }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Jabatan pekerjaan saat ini ( opsional )</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->jabaran }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -155,43 +161,43 @@
                                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Berikan saran Kepada program studi di ULB tentang peningkatan kegiatan program studi</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->saran_prodi }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Berikan saran kepada program studi di ULB tentang himpunan alumni</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->saran_himal }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Berikan saran kepada program studi di ULB tentang temu dosen-mahasiswa-alumni</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->saran_dosen }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Selama saudara mendapatkan pendidikan di Program Studi di ULB, bagaimana pengalaman saudara berinteraksi dengan Pimpinan ULB</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->interaksi_pimpinan }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Selama saudara mendapatkan pendidikan di Program Studi di ULB, bagaimana pengalaman saudara tentang pelayanan kemahasiswaan</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->layanan_kemahasiswaan }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Informasi Keberadaan Teman ( 5 Orang saja )</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->info_teman }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Kesediaan saudara sebagai alumni untuk ikut membesarkan nama kampus ULB dalam meningkatkan daya saing lulusan Program Studi di kampus ULB</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->kesiapan_saudara }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Dalam pengembangan jejaring</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->jejaring }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Penyediaan fasilitas untuk kegiatan akademik</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->penyedia_fasilitas }}</p>
                                                             </div>
                                                             <div class="flex flex-col pl-4 border-b pb-2 gap-y-1">
                                                                 <h5 class="text-sm text-black font-medium">Berikan catatan khusus untuk pengembangan program studi</h5>
-                                                                <p class="text-sm">{{ $item->thn_lulus }}</p>
+                                                                <p class="text-sm">{{ $item->catatan_prodi }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
