@@ -41,14 +41,17 @@ Route::middleware([
         Route::post('/agenda/create', [AgendaController::class, 'store'])->name('agenda.store');
         // berita
         Route::get('/berita', [\App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index');
-        Route::get('/berita/add', [\App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create');
-        Route::post('/berita/add', [\App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store');
+        Route::get('/berita/create', [\App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create');
+        Route::post('/berita/create', [\App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store');
+        Route::delete('/berita/{id}', [\App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.destroy');
         // dosen
         Route::get('/dosen', [\App\Http\Controllers\DosenController::class, 'index'])->name('dosen.index');
-        Route::get('/dosen/add', [\App\Http\Controllers\DosenController::class, 'create'])->name('dosen.create');
-        Route::post('/dosen/add', [\App\Http\Controllers\DosenController::class, 'store'])->name('dosen.store');
+        Route::get('/dosen/create', [\App\Http\Controllers\DosenController::class, 'create'])->name('dosen.create');
+        Route::post('/dosen/create', [\App\Http\Controllers\DosenController::class, 'store'])->name('dosen.store');
         // alumni
         Route::get('/alumni', [\App\Http\Controllers\AlumniAdminController::class, 'index'])->name('alumni.index');
+        Route::get('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'create'])->name('alumni.create');
+        Route::post('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'store'])->name('alumni.store');
         Route::delete('/alumni/{alumni}',[\App\Http\Controllers\AlumniAdminController::class, 'destroy'])->name('alumni.destroy');
         // lainnya
         Route::get('/lainnya', [\App\Http\Controllers\OtherController::class, 'index'])->name('lainnya.index');

@@ -12,10 +12,10 @@ class AlumniController extends Controller
 {
     public function index()
     {
-        $alumnis = Alumni::orderBy('created_at', 'desc')->get();
+        $alumnis = Alumni::latest()->get();;
         $user = Auth::user();
         $filled = SessionFormUser::where('user_id', $user->id)->exists();
-       return view('mahasiswa.alumni', compact('alumnis', 'filled'));
+        return view('mahasiswa.alumni', compact('alumnis', 'filled'));
     }
 
     public function create()

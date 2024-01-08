@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row items-center gap-x-2">
-            <a href="{{ route('mahasiswa.alumni') }}" class="font-normal text-lg text-gray-400 leading-tight">
-                {{ __('Alumni') }}
+            <a href="{{ route('alumni.index') }}" class="font-normal text-lg text-gray-400 leading-tight">
+                {{ __('Admin') }}
             </a>
             <span>/</span>
             <h2 class="font-semibold text-lg text-gray-800 leading-tight">
@@ -14,7 +14,7 @@
     <div class="py-8">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="w-full bg-white p-4 shadow-md rounded-md mx-auto">
-                <form action="{{ route('mahasiswa.alumni.store') }}" method="POST" class="grid grid-cols-1" enctype="multipart/form-data">
+                <form action="{{ route('alumni.store') }}" method="POST" class="grid grid-cols-1" enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-col space-y-4 mb-6 border-b pb-4">
                         <h5 class="text-lg font-semibold">Pribadi</h5>

@@ -9,7 +9,7 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $beritas = berita::all();
+        $beritas = berita::latest()->get();
         return view('admin.berita.index', compact('beritas'));
     }
 
@@ -36,7 +36,13 @@ class BeritaController extends Controller
         }
         berita::create($validatedData);
 
-        return redirect()->route('berita.index')
-            ->with('success', 'berita created successfully');
+        redirect()->route('berita.index');
+    }
+
+    public function destroy($id)
+    {
+        $berita = berita::findOrFail($id);
+        $berita->delete();
+        return redirect()->route('berita.index');
     }
 }

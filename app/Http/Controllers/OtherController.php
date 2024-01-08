@@ -14,9 +14,8 @@ class OtherController extends Controller
     {
         $fakultas = fakultas::all();
         $kontak = kontak::all();
-        $pertanyaan = Pertanyaan::all();
         $galeri = Galeri::all();
-        return view('admin.lainnya.index', compact('fakultas', 'kontak', 'pertanyaan', 'galeri'));
+        return view('admin.lainnya.index', compact('fakultas', 'kontak', 'galeri'));
     }
     // fakultas
     public function createFakultas()
