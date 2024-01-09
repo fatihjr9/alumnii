@@ -50,6 +50,7 @@ Route::middleware([
         Route::post('/dosen/create', [\App\Http\Controllers\DosenController::class, 'store'])->name('dosen.store');
         // alumni
         Route::get('/alumni', [\App\Http\Controllers\AlumniAdminController::class, 'index'])->name('alumni.index');
+        Route::get('/alumni-template/{id}', [\App\Http\Controllers\AlumniAdminController::class, 'show'])->name('alumni.template');
         Route::get('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'create'])->name('alumni.create');
         Route::post('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'store'])->name('alumni.store');
         Route::delete('/alumni/{alumni}',[\App\Http\Controllers\AlumniAdminController::class, 'destroy'])->name('alumni.destroy');

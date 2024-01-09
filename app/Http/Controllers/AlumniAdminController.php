@@ -25,6 +25,13 @@ class AlumniAdminController extends Controller
         $alumnis = $alumnis->get();
         return view('admin.alumni.index', compact('alumnis'));
     }
+
+    public function show($id)
+    {
+        $alumni = Alumni::where('id', $id)->firstOrFail();
+        return view('admin.alumni.template', compact('alumni'));
+    }
+
     public function create()
     {
         $jurusan = Fakultas::all();

@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.template {
+    padding: 1rem;
+}
+.template-header {
+    display:flex;
+    align-items: center;
+    border-bottom : 1px solid #c0c0c0;
+    padding-bottom : .5rem;
+}
+.template-header img{
+    border-radius: 100%;
+}
+.template-header-text {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction:column;
+}
+.template-header-text h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.template-header-text p {
+    font-size: .75rem;
+    font-weight: 400;
+    color: #c0c0c0;
+}

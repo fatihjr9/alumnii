@@ -197,6 +197,9 @@
                                 <div id="dropdownHover-{{ $item->id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                     <ul class="py-2 text-sm" aria-labelledby="dropdownHoverButton-{{ $item->id }}">
                                         <li>
+                                            <a href="{{ route('alumni.template',['id' => $item->id]) }}" class="block px-4 py-2 hover:bg-gray-100">View</a>
+                                        </li>
+                                        <li>
                                             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Download</a>
                                         </li>
                                         <li>
