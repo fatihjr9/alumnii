@@ -4,28 +4,47 @@
 
 
 .template {
-    padding: 1rem;
+    margin-top: .5rem;
 }
 .template-header {
     display:flex;
     align-items: center;
+    justify-content: center;
     border-bottom : 1px solid #c0c0c0;
     padding-bottom : .5rem;
 }
 .template-header img{
     border-radius: 100%;
+    width: 5rem;
+    height: 5rem;
 }
-.template-header-text {
-    margin-left: 1rem;
-    display: flex;
-    flex-direction:column;
+.template-content-alumni {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:.5rem;
 }
-.template-header-text h5 {
-    font-size: 1.5rem;
-    font-weight: 700;
+.template-content-alumni p {
+    font-size: 1rem;
+    font-weight: 600;
 }
-.template-header-text p {
-    font-size: .75rem;
+.template-kerja {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:1.5rem;
+}
+.position {
+    border-bottom : 1px solid #c0c0c0;
+    padding-bottom : .5rem;
+}
+.position h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+.position p {
+    font-size: 1rem;
     font-weight: 400;
-    color: #c0c0c0;
+    color: #666666;
 }

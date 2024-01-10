@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumni;
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class AlumniAdminController extends Controller
 {
     public function index(Request $request)
@@ -30,6 +30,12 @@ class AlumniAdminController extends Controller
     {
         $alumni = Alumni::where('id', $id)->firstOrFail();
         return view('admin.alumni.template', compact('alumni'));
+    }
+
+    public function DownloadPDF($nama) {
+        $alumni = Alumni::where('nama', $nama)->firstOrFail();
+        $pdf = Pdf::loadView('admin.alumni.template', compact('alumni'));
+        return $pdf->download('Alumni' . $nama . '.pdf');
     }
 
     public function create()
@@ -86,10 +92,11 @@ class AlumniAdminController extends Controller
             $validatedData['foto'] = $imageName;
         }
 
-        $alumni = Alumni::create($validatedData);
+        Alumni::create($validatedData);
 
         return redirect()->route('alumni.index')->with('success', 'Alumni created successfully');
     }
+    
 
     public function destroy(Alumni $alumni)
     {

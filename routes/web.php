@@ -53,6 +53,7 @@ Route::middleware([
         Route::get('/alumni-template/{id}', [\App\Http\Controllers\AlumniAdminController::class, 'show'])->name('alumni.template');
         Route::get('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'create'])->name('alumni.create');
         Route::post('/alumni/create', [\App\Http\Controllers\AlumniAdminController::class, 'store'])->name('alumni.store');
+        Route::get('download/{nama}', [\App\Http\Controllers\AlumniAdminController::class, 'downloadPDF'])->name('alumni.download');
         Route::delete('/alumni/{alumni}',[\App\Http\Controllers\AlumniAdminController::class, 'destroy'])->name('alumni.destroy');
         // lainnya
         Route::get('/lainnya', [\App\Http\Controllers\OtherController::class, 'index'])->name('lainnya.index');

@@ -200,7 +200,7 @@
                                             <a href="{{ route('alumni.template',['id' => $item->id]) }}" class="block px-4 py-2 hover:bg-gray-100">View</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Download</a>
+                                            <a target="_blank" href="{{ route('alumni.download', ['nama' => $item->nama]) }}" class="block px-4 py-2 hover:bg-gray-100">Download</a>
                                         </li>
                                         <li>
                                             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
