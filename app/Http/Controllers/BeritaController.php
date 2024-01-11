@@ -36,7 +36,7 @@ class BeritaController extends Controller
         }
         berita::create($validatedData);
 
-        redirect()->route('berita.index');
+        return redirect()->route('berita.index');
     }
 
     public function destroy($id)

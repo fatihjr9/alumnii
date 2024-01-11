@@ -32,10 +32,11 @@ class AlumniAdminController extends Controller
         return view('admin.alumni.template', compact('alumni'));
     }
 
-    public function DownloadPDF($nama) {
+    public function downloadPDF($nama) {
         $alumni = Alumni::where('nama', $nama)->firstOrFail();
         $pdf = Pdf::loadView('admin.alumni.template', compact('alumni'));
-        return $pdf->download('Alumni' . $nama . '.pdf');
+        set_time_limit(300);
+        return $pdf->stream("data alumni $nama.pdf", array("Attachment" => false));
     }
 
     public function create()

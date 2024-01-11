@@ -15,7 +15,7 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @forelse ($beritas as $item)
                     <div class="bg-white rounded-md">          
                         <img src="{{ asset('berita/' . $item->gambar) }}" alt="{{ $item->nama }}" class="w-full h-40 rounded-t-md bg-center object-cover">
