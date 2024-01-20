@@ -13,12 +13,59 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
         <!-- Styles -->
         @livewireStyles
     </head>
 <body>
+    <style>
+        .template {
+    margin-top: .5rem;
+        }
+        .template-header {
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom : 1px solid #c0c0c0;
+            padding-bottom : .5rem;
+        }
+        .template-header img{
+            border-radius: 100%;
+            width: 5rem;
+            height: 5rem;
+        }
+        .template-content-alumni {
+            margin: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap:.5rem;
+        }
+        .template-content-alumni p {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .template-kerja {
+            margin: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap:1.5rem;
+        }
+        .position {
+            border-bottom : 1px solid #c0c0c0;
+            padding-bottom : .5rem;
+        }
+        .position h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+        }
+        .position p {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666666;
+        }
+    </style>
     <div class="template">
         <div class="template-header">
             <img src="{{ asset('alumni/' . $alumni->foto) }}" alt="{{ $alumni->nama }}" class="rounded-t-md w-24 h-24 object-cover bg-center">

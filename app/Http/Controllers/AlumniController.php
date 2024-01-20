@@ -10,13 +10,27 @@ use Illuminate\Support\Facades\Auth;
 
 class AlumniController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $alumnis = Alumni::latest()->get();;
+        $search = $request->input('search');
+        $alumnis = Alumni::latest();
+
+        if ($search) {
+            $alumnis->where(function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('npm', 'like', '%' . $search . '%')
+                    ->orWhere('prodi', 'like', '%' . $search . '%');
+            });
+        }
+
+        $alumnis = $alumnis->get();
+
         $user = Auth::user();
         $filled = SessionFormUser::where('user_id', $user->id)->exists();
+
         return view('mahasiswa.alumni', compact('alumnis', 'filled'));
     }
+
 
     public function create()
     {
