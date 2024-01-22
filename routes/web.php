@@ -44,6 +44,10 @@ Route::middleware([
         Route::get('/berita/create', [\App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create');
         Route::post('/berita/create', [\App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store');
         Route::delete('/berita/{id}', [\App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.destroy');
+        // broadcast
+        Route::get('/broadcast', [\App\Http\Controllers\BroadcastController::class, 'index'])->name('broadcast.index');
+        Route::get('/broadcast/create', [\App\Http\Controllers\BroadcastController::class, 'create'])->name('broadcast.create');
+        Route::post('/broadcast/create', [\App\Http\Controllers\BroadcastController::class, 'store'])->name('broadcast.store');
         // dosen
         Route::get('/dosen', [\App\Http\Controllers\DosenController::class, 'index'])->name('dosen.index');
         Route::get('/dosen/create', [\App\Http\Controllers\DosenController::class, 'create'])->name('dosen.create');

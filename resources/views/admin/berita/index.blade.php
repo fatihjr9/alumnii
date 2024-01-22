@@ -4,12 +4,31 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Berita') }}
             </h2>
-            <a href="{{ route('berita.create') }}" class="px-4 py-2 bg-gray-300 text-black flex flex-row gap-x-1 rounded-md w-fit ml-auto items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                </svg>                      
-                <span class="text-sm">Tambah Berita</span>                    
-            </a>
+            <div class="flex flex-row items-center gap-x-4">
+                <section>
+                    @php
+                        $user = App\Models\User::where('role', 1)->get();
+                    @endphp
+                
+                    @if ($user)
+                        <a href="mailto:{{ $user->pluck('email')->implode(',') }}" class="px-4 py-2 bg-gray-300 text-black flex flex-row gap-x-1 rounded-md w-fit ml-auto items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                            </svg>                      
+                            <span class="text-sm">Tambah Broadcast</span>                    
+                        </a>
+                    @else
+                        <p>Tidak ada pengguna dengan peran 1 yang ditemukan.</p>
+                    @endif
+                </section>
+                
+                <a href="{{ route('berita.create') }}" class="px-4 py-2 bg-gray-300 text-black flex flex-row gap-x-1 rounded-md w-fit ml-auto items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                    </svg>                      
+                    <span class="text-sm">Tambah Berita</span>                    
+                </a>
+            </div>
         </div>
     </x-slot>
 
