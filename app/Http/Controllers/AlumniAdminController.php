@@ -98,6 +98,75 @@ class AlumniAdminController extends Controller
         return redirect()->route('alumni.index')->with('success', 'Alumni created successfully');
     }
     
+    public function edit($id)
+    {
+        $alumni = Alumni::findOrFail($id);
+        $jurusan = Fakultas::all();
+        return view('admin.alumni.edit', compact('alumni', 'jurusan'));
+    }
+
+public function update(Request $request, $id)
+    {
+        $alumni = Alumni::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'foto' => 'required|image|mimes:png,jpg,jpeg,svg|max:1024',
+            'nama'=>'required',
+            'npm'=>'required',
+            'alamat'=>'required',
+            'kontak'=>'required',
+            'email'=>'required',
+            'prodi'=>'required',
+            'thn_lulus'=>'required',
+            // Pekerjaan
+            'tempat_kerja'=>'required',
+            'alamat_kerja'=>'required',
+            'kontak_kerja'=>'required',
+            'sesuai_minat'=>'required',
+            'info_kerja'=>'required',
+            'waktu_kerja'=>'required',
+            'alasan'=>'required',
+            'penghasilan_pertama'=>'required',
+            'penghasilan_rata'=>'required',
+            'riwayat_kerja'=>'required',
+            'nama_alamat_lembaga'=>'required',
+            'kategori_lembaga'=>'required',
+            'status'=>'required',
+            'pangkat'=>'required',
+            'jabaran'=>'required',
+            // lainnya
+            'saran_prodi'=>'required',
+            'saran_himal'=>'required',
+            'saran_dosen'=>'required',
+            'interaksi_pimpinan'=>'required',
+            'layanan_kemahasiswaan'=>'required',
+            'info_teman'=>'required',
+            'kesiapan_saudara'=>'required',
+            'jejaring'=>'required',
+            'penyedia_fasilitas'=>'required',
+            'catatan_prodi'=>'required',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            // Delete old image if exists
+            $oldImagePath = public_path('alumni/') . $alumni->foto;
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+
+            // Upload new image
+            $image = $request->file('foto');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('alumni/'), $imageName);
+
+            $validatedData['foto'] = $imageName;
+        }
+
+        $alumni->update($validatedData);
+
+        return redirect()->route('alumni.index')->with('success', 'Alumni updated successfully');
+    }
+
 
     public function destroy(Alumni $alumni)
     {

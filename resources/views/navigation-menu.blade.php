@@ -35,17 +35,11 @@
                             <x-nav-link href="{{ route('agenda.index') }}" :active="request()->routeIs('agenda.index')">
                                 {{ __('Agenda') }}
                             </x-nav-link>
-                            <x-nav-link href="{{ route('broadcast.index') }}" :active="request()->routeIs('broadcast.index')">
-                                {{ __('Broadcast') }}
-                            </x-nav-link>
                             <x-nav-link href="{{ route('berita.index') }}" :active="request()->routeIs('berita.index')">
                                 {{ __('Berita') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('alumni.index') }}" :active="request()->routeIs('alumni.index')">
                                 {{ __('Alumni') }}
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('dosen.index') }}" :active="request()->routeIs('dosen.index')">
-                                {{ __('Dosen') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('lainnya.index') }}" :active="request()->routeIs('lainnya.index')">
                                 {{ __('Lainnya') }}

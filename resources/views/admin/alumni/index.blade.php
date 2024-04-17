@@ -203,7 +203,7 @@
                                             <a target="_blank" href="{{ route('alumni.download', ['nama' => $item->nama]) }}" class="block px-4 py-2 hover:bg-gray-100">Download</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
+                                            <a href="{{ route('alumni.edit', $item->id) }}" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
                                         </li>
                                         <li>
                                             <form action="{{ route('alumni.destroy', $item->id) }}" method="post" class="px-4 py-2 hover:bg-gray-100">

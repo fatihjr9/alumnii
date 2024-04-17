@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dosen;
+use App\Models\Kontak;
 use App\Models\agenda;
 use App\Models\Alumni;
 use App\Models\berita;
@@ -16,9 +16,8 @@ class DashboardController extends Controller
     {   
         // Galeri
         $galeri = Galeri::latest()->take(1)->get();
-        // Dosen
-        $totalDosen = dosen::count();
-        $dosen = dosen::latest()->take(3)->get();
+        // Kontak
+        $kontak = Kontak::all();
 
         // Agenda
         $totalAgenda = Agenda::count();
@@ -37,7 +36,6 @@ class DashboardController extends Controller
 
 
         return view('admin.dashboard', [
-            'totalDosen' => $totalDosen,
             'totalAgenda' => $totalAgenda,
             'totalBerita' => $totalBerita,
             'totalFakultas' => $totalFakultas,
@@ -47,7 +45,7 @@ class DashboardController extends Controller
             'fakultas' => $fakultas,
             'alumni' => $alumni,
             'agenda' => $agenda,
-            'dosen' => $dosen,
+            'kontak' => $kontak,
             'galeri' => $galeri,
         ]);
     }

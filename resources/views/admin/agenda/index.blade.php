@@ -63,11 +63,15 @@
                             <div id="dropdownHover-{{ $item->id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                 <ul class="py-2 text-sm" aria-labelledby="dropdownHoverButton-{{ $item->id }}">
                                   <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
+                                    <a href="{{ route('agenda.edit', $item->id) }}" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
                                   </li>
                                   <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Delete</a>
-                                  </li>
+                                    <form action="{{ route('agenda.destroy', $item->id) }}" method="post" class="px-4 py-2 hover:bg-gray-100">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Yakin menghapus {{ $item->nama }}?')">Delete</button>
+                                    </form>                                  
+                                </li>
                                 </ul>
                             </div>
                         </div>

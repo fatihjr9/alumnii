@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\agenda;
 use App\Models\Alumni;
 use App\Models\berita;
-use App\Models\Dosen;
+use App\Models\Kontak;
 use App\Models\Fakultas;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
@@ -16,9 +16,8 @@ class MahasiswaController extends Controller
     {   
         // Galeri
         $galeri = Galeri::latest()->take(1)->get();
-        // Dosen
-        $totalDosen = Dosen::count();
-        $dosen = dosen::latest()->take(3)->get();
+        // kontak
+        $kontak = Kontak::latest()->get();
 
         // Agenda
         $totalAgenda = Agenda::count();
@@ -37,7 +36,6 @@ class MahasiswaController extends Controller
 
 
         return view('mahasiswa.dashboard', [
-            'totalDosen' => $totalDosen,
             'totalAgenda' => $totalAgenda,
             'totalBerita' => $totalBerita,
             'totalFakultas' => $totalFakultas,
@@ -47,7 +45,7 @@ class MahasiswaController extends Controller
             'fakultas' => $fakultas,
             'alumni' => $alumni,
             'agenda' => $agenda,
-            'dosen' => $dosen,
+            'kontak' => $kontak,
             'galeri' => $galeri,
         ]);
     }

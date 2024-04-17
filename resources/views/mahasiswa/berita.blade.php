@@ -7,17 +7,107 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                @foreach ($berita as $item)
-                    <div class="flex flex-col justify-between bg-white rounded-md gap-y-2 shadow-sm border border-slate-200">
-                        <img src="{{ asset('berita/' . $item->gambar) }}" alt="{{ $item->nama }}" class="rounded-t-md h-40 bg-center object-cover">
-                        <div class="flex flex-col px-4 py-2">
-                            <h5 class="text-base font-semibold">{{ $item->nama }}</h5>
-                            <p class="text-sm text-gray-500">{{ $item->tanggal }}</p>
-                            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                @forelse ($berita as $item)
+                    <div class="bg-white rounded-md">      
+                        @if(is_array(json_decode($item->gambar, true)) && count(json_decode($item->gambar, true)) > 0)
+                            <img src="{{ asset('berita/' . json_decode($item->gambar, true)[0]) }}" alt="{{ $item->nama }}" class="w-full h-48 rounded-t-md bg-center object-cover"> 
+                        @endif
+                        <div class="p-4">
+                            <h5 class="text-xs w-fit rounded-md px-1.5 py-1 bg-indigo-600/10 text-indigo-600">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</h5>
+                            <div class="flex flex-col my-2 space-y-1">
+                                <h5 class="text-xl font-semibold">{{ $item->nama }}</h5>
+                                <p class="text-sm truncate text-slate-400 font-thin">{{ $item->deskripsi }}</p>
+                            </div>
+                            <div class="flex flex-row items-center gap-x-1 h-fit">
+                                {{-- Modal --}}
+                                <button data-modal-target="default-modal-{{ $item->id }}" data-modal-toggle="default-modal-{{ $item->id }}" class="w-full py-2 bg-slate-200 rounded-md" type="button">
+                                    Lihat Detail
+                                </button>
+                                <div id="default-modal-{{ $item->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 lg:-translate-y-10 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                        <!-- Modal content -->
+                                        <div class="relative bg-white rounded-lg shadow">
+                                            
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center absolute right-2 top-2" data-modal-hide="default-modal-{{ $item->id }}">
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                            <!-- Modal header -->
+                                            <div class="flex items-center justify-between py-2 px-4 md:px-5 border-b rounded-t">
+                                                <div class="flex flex-col space-y-1">
+                                                    <h3 class="text-xl font-semibold">{{ $item->nama }}</h3>
+                                                    <p class="text-sm text-slate-600">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</p>
+                                                </div>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="p-4 md:p-5 space-y-4">
+                                                <div id="default-carousel-{{ $item->id }}" class="relative w-full" data-carousel="slide">
+                                                    <!-- Carousel wrapper -->
+                                                    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                                                        @if(is_array(json_decode($item->gambar, true)))
+                                                            @foreach(json_decode($item->gambar, true) as $index => $image)
+                                                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                                                    <img src="{{ asset('berita/' . $image) }}" class="w-full bg-center object-cover" alt="Gallery Image {{ $index + 1 }}">
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                    <!-- Slider controls -->
+                                                    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                                                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                                            <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                                            </svg>
+                                                            <span class="sr-only">Previous</span>
+                                                        </span>
+                                                    </button>
+                                                    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                                                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                                            <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                                            </svg>
+                                                            <span class="sr-only">Next</span>
+                                                        </span>
+                                                    </button>
+                                                </div>         
+                                                <p class="text-base leading-relaxed text-gray-500">{{ $item->deskripsi }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Dropdown --}}
+                                <button id="dropdownHoverButton-{{ $item->id }}" data-dropdown-toggle="dropdownHover-{{ $item->id }}" data-dropdown-trigger="hover" class="w-10 h-10 bg-slate-200 rounded-md" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                    </svg>  
+                                </button>
+                                <div id="dropdownHover-{{ $item->id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                    <ul class="py-2 text-sm" aria-labelledby="dropdownHoverButton-{{ $item->id }}">
+                                      <li>
+                                        <a href="{{ route('berita.edit', $item->id) }}" class="block px-4 py-2 hover:bg-gray-100">Edit</a>
+                                      </li>
+                                      <li>
+                                        <form action="{{ route('berita.destroy', $item->id) }}" method="post" class="px-4 py-2 hover:bg-gray-100">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Yakin menghapus {{ $item->nama }}?')">Delete</button>
+                                        </form>
+                                      </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <tr class="bg-white border-b text-black">
+                        <td colspan="7" class="px-6 py-4 text-center">
+                            Tidak ada data
+                        </td>
+                    </tr>
+                @endforelse
             </div>
         </div>
     </div>

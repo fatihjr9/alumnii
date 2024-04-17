@@ -27,7 +27,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @foreach($alumnis as $item)
                     <div class="bg-white rounded-md">
-                        <img src="{{ asset('alumni/' . $item->foto) }}" alt="{{ $item->nama }}" class="rounded-t-md w-full h-24 object-cover bg-center">
+                        <img src="{{ asset('alumni/' . $item->foto) }}" alt="{{ $item->nama }}" class="rounded-t-md w-full h-40 object-cover bg-center">
                         <div class="p-2 flex flex-col space-y-2">
                             <div class="flex flex-col">
                                 <h5 class="text-lg font-semibold">{{ $item->nama }}</h5>

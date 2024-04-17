@@ -31,4 +31,32 @@ class AgendaController extends Controller
         return redirect()->route('agenda.index')
             ->with('success', 'Agenda created successfully');
     }
+
+    public function edit($id)
+    {
+        $agenda = agenda::findOrFail($id);
+        return view('admin.agenda.edit', compact('agenda'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'tanggal' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        $agenda = agenda::findOrFail($id);
+        $agenda->update($request->all());
+
+        return redirect()->route('agenda.index')
+            ->with('success', 'Agenda updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $agenda = agenda::findOrFail($id);
+        $agenda->delete();
+        return redirect()->route('agenda.index');
+    }
 }

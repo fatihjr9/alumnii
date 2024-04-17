@@ -44,8 +44,13 @@
                                 <td class="px-6 py-4 truncate">
                                     {{ $item->mengampu }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <td class="px-6 py-4 flex flex-row items-center gap-x-2">
+                                    <a href="{{ route('dosen.edit',$item->id) }}" class="hover:text-orange-600 transition-all">Edit</a>
+                                    <form action="{{ route('dosen.destroy', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="hover:text-red-600 transition-all" onclick="return confirm('Yakin menghapus {{ $item->nama }}?')">Delete</button>
+                                    </form>                                 
                                 </td>
                             </tr>
                             @empty
